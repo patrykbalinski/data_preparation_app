@@ -1,6 +1,7 @@
 import csv
 import json
 from dataclasses import dataclass
+
 from models.submodels import MovieCollection, Genre, ProductionCompany, ProductionCountry, SpokenLanguage
 
 
@@ -47,7 +48,7 @@ class Movie:
         if fields == 'all':
             return json.dumps(self.__dict__, indent=2)
         else:
-            output_obj = {}
+            output_dict = {}
             for field in fields:
-                output_obj[field] = self.__dict__[field]
-            return output_obj
+                output_dict[field] = self.__dict__[field]
+            return json.dumps(output_dict, indent=2)
