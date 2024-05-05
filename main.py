@@ -5,9 +5,9 @@ from utils import *
 
 
 def main():
-    movies_list = Movie.load_from_csv(consts.file_path.movie)
-    keywords_list = Keywords.load_from_csv(consts.file_path.keywords)
-    credits_list = Credits.load_from_csv(consts.file_path.credits)
+    movies_list = sorted(Movie.load_from_csv(consts.file_path.movie), key=lambda x: int(x.id))
+    keywords_list = sorted(Keywords.load_from_csv(consts.file_path.keywords), key=lambda x: int(x.movie_id))
+    credits_list = sorted(Credits.load_from_csv(consts.file_path.credits), key=lambda x: int(x.movie_id))
 
     print(movies_list[0].to_json(
         fields=['id', 'title', 'overview', 'original_language', 'budget', 'popularity', 'release_date', 'runtime',
